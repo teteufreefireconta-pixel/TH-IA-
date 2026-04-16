@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH IA - Inteligência Artificial</title>
+    <style>
+        /* Estilo Premium TH SYSTEM */
+        :root {
+            --neon-green: #00ff64;
+            --dark-bg: #0a0a0a;
+            --card-bg: #151515;
+            --text-white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header */
+        header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 100, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header span {
+            color: var(--neon-green);
+        }
+
+        /* Chat Container */
+        #chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 18px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--neon-green);
+            color: black;
+            font-weight: bold;
+            border-bottom-right-radius: 2px;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-bottom-left-radius: 2px;
+        }
+
+        /* Input Area */
+        .input-area {
+            padding: 20px;
+            background-color: var(--card-bg);
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #333;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #000;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--neon-green);
+        }
+
+        button {
+            padding: 10px 25px;
+            background-color: var(--neon-green);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* Rodapé de Créditos */
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            background: #000;
+            color: #666;
+        }
+
+        footer b {
+            color: var(--neon-green);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TH <span>IA</span></h1>
+    </header>
+
+    <div id="chat-container">
+        <div class="message ai-message">
+            Olá! Eu sou a <b>TH IA</b>. Como posso ajudar você hoje, Matheus?
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta aqui...">
+        <button onclick="sendMessage()">ENVIAR</button>
+    </div>
+
+    <footer>
+        DESENVOLVIDO POR: <b>MATHEUS DA SILVA ARAUJO</b> | &copy; 2026 TH SYSTEM
+    </footer>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+
+        function sendMessage() {
+            const text = userInput.value;
+            if (text.trim() === "") return;
+
+            // Mensagem do Usuário
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-message';
+            userDiv.innerText = text;
+            chatContainer.appendChild(userDiv);
+
+            userInput.value = "";
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            // Resposta Automática da IA (Simulação)
+            setTimeout(() => {
+                const aiDiv = document.createElement('div');
+                aiDiv.className = 'message ai-message';
+                aiDiv.innerHTML = "<b>TH IA:</b> Recebi sua mensagem. Estou processando sua solicitação dentro do sistema de Matheus da Silva Araujo...";
+                chatContainer.appendChild(aiDiv);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1000);
+        }
+
+        // Enviar com a tecla Enter
+        userInput.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
